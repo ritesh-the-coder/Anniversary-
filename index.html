@@ -9,67 +9,51 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', cursive;
-    background: black;
+    background: linear-gradient(to bottom, #000000, #1a001a);
     color: white;
-    overflow-x: hidden;
     text-align: center;
 }
 
-/* Intro Screen */
-#intro {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 10;
-}
-
-button {
-    padding: 15px 30px;
-    font-size: 20px;
-    border: none;
-    border-radius: 30px;
-    background: #ff4da6;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 20px pink;
-}
-
-/* Main Content */
+/* Container */
 .container {
+    max-width: 500px;
+    margin: auto;
     padding: 20px;
-    display: none;
 }
 
+/* Heading */
 h1 {
     color: #ff4da6;
-    animation: glow 2s infinite alternate;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px pink; }
-    to { text-shadow: 0 0 25px #ff1a8c; }
-}
-
-/* Typing Effect */
-#text {
-    margin-top: 20px;
-    font-size: 17px;
-    line-height: 1.7;
-    padding: 15px;
-}
-
-/* Image */
-img {
-    width: 80%;
-    max-width: 300px;
+/* Letter Box */
+.letter {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
     border-radius: 20px;
-    margin-top: 20px;
-    box-shadow: 0 0 20px pink;
+    line-height: 1.8;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Image Card */
+.image-box {
+    margin-top: 25px;
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 25px pink;
+}
+
+/* Footer */
+.footer {
+    margin-top: 25px;
+    color: #ff66b2;
+    font-size: 18px;
 }
 
 /* Hearts */
@@ -89,85 +73,55 @@ img {
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-    <h1>Our Story ❤️</h1>
-    <button onclick="start()">Start 💘</button>
-</div>
-
-<!-- MAIN -->
-<div class="container" id="main">
+<div class="container">
 
 <h1>Happy 1st Month Anniversary ❤️</h1>
 
-<div id="text"></div>
+<div class="letter">
 
-<img src="palchin1.jpg">
+<p>My Babe ❤️,</p>
+
+<p>It’s been one month with you… and honestly, it feels like the most beautiful part of my life 💫</p>
+
+<p>Before you came into my world, everything felt normal… but after you, everything became special. Every moment, every conversation, every smile — it all started to matter more 💖</p>
+
+<p>Darling, you have no idea how much you mean to me. The way you talk, the way you smile, even your little attitude… I love everything about you 😭❤️</p>
+
+<p>I may not be perfect, but one thing I promise — I will always try my best to keep you happy 💞</p>
+
+<p>Talking to you… those late-night chats… those random laughs… they have become my favorite part of the day 💕</p>
+
+<p>You are my peace, my happiness, my everything ❤️</p>
+
+<p>Happy 1st Month Anniversary, my love 💋 This is just the beginning…</p>
+
+<p>I love you sooo much, my darling ❤️ Forever yours 💖</p>
 
 </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
-</audio>
+<!-- IMAGE -->
+<div class="image-box">
+    <img src="palchin1.jpg">
+</div>
 
+<div class="footer">
+Forever Us 💞 | Mine Love Forever 🔐
+</div>
+
+</div>
+
+<!-- HEART SCRIPT -->
 <script>
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
 
-let text = `My Babe ❤️,
-
-It’s been one month with you… and honestly, it feels like the most beautiful part of my life 💫  
-
-Before you came into my world, everything felt normal… but after you, everything became special.  
-Every moment, every conversation, every smile — it all started to matter more 💖  
-
-Darling, you have no idea how much you mean to me.  
-The way you talk, the way you smile, even your little attitude… I love everything about you 😭❤️  
-
-I may not be perfect, but one thing I promise —  
-I will always try my best to keep you happy 💞  
-
-Talking to you… those late-night chats… those random laughs…  
-they have become my favorite part of the day 💕  
-
-You are my peace, my happiness, my everything ❤️  
-
-Happy 1st Month Anniversary, my love 💋  
-This is just the beginning…  
-
-I love you sooo much, my darling ❤️  
-Forever yours 💖`;
-
-let i = 0;
-
-function typeWriter() {
-    if (i < text.length) {
-        document.getElementById("text").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 35);
-    }
-}
-
-function start() {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("main").style.display = "block";
-    document.getElementById("music").play();
-    typeWriter();
-    hearts();
-}
-
-function hearts() {
-    setInterval(() => {
-        let heart = document.createElement("div");
-        heart.innerHTML = "💖";
-        heart.className = "heart";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 5000);
-    }, 300);
-}
-
+    setTimeout(() => heart.remove(), 5000);
+}, 400);
 </script>
 
 </body>
